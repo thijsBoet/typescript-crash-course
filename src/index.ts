@@ -91,3 +91,80 @@ interface MathFunc {
 }
 
 const add: MathFunc = (x: number, y: number): number => x + y;
+const sub: MathFunc = (x: number, y: number): number => x - y;
+const div: MathFunc = (x: number, y: number): number => x / y;
+const mul: MathFunc = (x: number, y: number): number => x * y;
+
+// Classes
+class Person {
+	// PUBLIC Can be accessed outside the class (default)
+	public id: number;
+
+	// PRIVATE Can only be accessed inside the class
+	private name: string;
+
+	// PROTECTED Can only be accessed inside the class and in classes that extend this class
+	protected age?: number;
+
+	constructor(id: number, name: string, age?: number) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	}
+
+	register() {
+		return `${this.name} is now registered`;
+	}
+}
+
+const matthijs = new Person(1, 'Matthijs Boet', 42);
+console.log(matthijs.register());
+
+// Classes implementing interfaces
+interface ProductInterface {
+	readonly id: number;
+	name: string;
+	price: number;
+}
+
+class Product implements ProductInterface {
+	readonly id: number;
+	name: string;
+	price: number;
+
+	constructor(id: number, name: string, price: number) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+	}
+}
+
+// Extending classes with subclasses
+class Employee extends Person {
+	position: string;
+	private salary: number;
+
+	constructor(
+		id: number,
+		name: string,
+		age: number,
+		position: string,
+		salary: number
+	) {
+		super(id, name, age);
+		this.position = position;
+		this.salary = salary;
+	}
+}
+
+const juniorWebDeveloper = new Employee(2, 'John Doe', 25, 'Junior Developer', 67200);
+
+// Generics (placeholder for the type(s) of a property or a function)
+function getArray<T>(items: T[]): T[] {
+	return new Array().concat(items);
+}
+
+let numberArray = getArray<number>([1, 2, 3, 4, 5]);
+let stringArray = getArray<string>(['brad', 'John', 'Jill']);
+
+// numberArray.push('6') => Type 'string' is not assignable to type 'number'

@@ -61,3 +61,42 @@ const user1 = {
     name: 'John',
 };
 const add = (x, y) => x + y;
+const sub = (x, y) => x - y;
+const div = (x, y) => x / y;
+const mul = (x, y) => x * y;
+// Classes
+class Person {
+    constructor(id, name, age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+    register() {
+        return `${this.name} is now registered`;
+    }
+}
+const matthijs = new Person(1, 'Matthijs Boet', 42);
+console.log(matthijs.register());
+class Product {
+    constructor(id, name, price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+}
+// Extending classes with subclasses
+class Employee extends Person {
+    constructor(id, name, age, position, salary) {
+        super(id, name, age);
+        this.position = position;
+        this.salary = salary;
+    }
+}
+const juniorWebDeveloper = new Employee(2, 'John Doe', 25, 'Junior Developer', 67200);
+// Generics (placeholder for the type(s) of a property or a function)
+function getArray(items) {
+    return new Array().concat(items);
+}
+let numberArray = getArray([1, 2, 3, 4, 5]);
+let stringArray = getArray(['brad', 'John', 'Jill']);
+// numberArray.push('6') => Type 'string' is not assignable to type 'number'
